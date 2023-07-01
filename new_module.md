@@ -1,6 +1,6 @@
 # How To Make A New Module
 
-This fork exists because I want to add a new module(s) to love2d. I have very little experience with this codebase,
+This fork exists because I want to add new modules to love2d. I have very little experience with this codebase,
 let alone c++, so I am using this document to detail my findings regarding how to make a new module.
 
 ## Table of Contents
@@ -14,10 +14,11 @@ let alone c++, so I am using this document to detail my findings regarding how t
 0. Strongly consider if your idea needs to be a module. You may have the option of making the module a shared lua library.
 Assuming you do have an idea that would best be a new module, continue on.
 
+Note: I will be using "mod", and other variations like "Mod" or "MOD", as the placeholder for your module name throughout this guide.
+
 1. In the `src/common/module.h` file, find the `ModuleType` definition and add an entry for your module in the form `M_MOD`.
 
 2. Create a new folder in the `src/modules` folder with the name of your module.
-I will be using "mod", and other variations like "Mod" or "MOD", as the placeholder for your module name throughout this guide.
 
 3. Create a file `Mod.h` in `src/modules/mod/` with the following structure:
 ```c++
@@ -128,12 +129,12 @@ set(LOVE_LIB_SRC
     ${LOVE_SRC_MODULE_MOD}
 )
 ```
-   After saving this file, cmake the errors about importing other files should go away.
-   If the errors persist, try compiling and read the error messages to debug.
+   After saving this file, the errors about importing other files should go away.
+   If the errors persist, compile and read error messages to debug.
 
 7. Next up is getting your module accessable to lua.
    In this codebase, the lua wrapper for modules is done through files starting with "wrap_". 
-   So, start by making a `wrap_Mod.h` and a `wrap_Mod.cpp` file in your module directory.
+   So, start by making a `wrap_Mod.h` file and a `wrap_Mod.cpp` file in your module directory.
 
 8. The "wrap_Mod.h" file:
 ```c++
@@ -220,7 +221,7 @@ extern "C" LOVE_EXPORT int luaopen_love_mod(lua_State *L)
 
 11. We will make the new module accessible in lua by modifying the `src/modules/love/love.cpp` file.
     
-    First, find a `extern C` code block containing function headers in the form `extern int luaopen_love_module(lua_State*);`.
+    First, find the `extern C` code block containing function headers in the general form `extern int luaopen_love_module(lua_State*);`.
     This is where the function definitions for our module loaders will be referenced.
     Add an entry to the code block:
 
@@ -243,7 +244,7 @@ extern "C"
 
 12. To fix that, we can modify `src/modules/love/boot.lua` to require the module for us when love boots up.
 
-    In the file, a table called "c" (likely for "config") is defined. Within that table is a sub-table called "module".
+    In the file, a table called "c" is defined. Within that table is a sub-table called "module".
     This table is a mapping from module name to boolean determining which modules are loaded at boot time.
     Add an entry:
 ```lua
@@ -285,6 +286,12 @@ function love.load()
 	love.event.push("quit")
 end
 ```
+
+The console output should look like:
+
+    Hello, world!
+
+And there you have it! Your very own love module.
 
 ## Next Steps
 
