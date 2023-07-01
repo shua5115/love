@@ -1115,6 +1115,13 @@ set(LOVE_SRC_MODULE_WINDOW
 source_group("modules\\window" FILES ${LOVE_SRC_MODULE_WINDOW_ROOT})
 source_group("modules\\window\\sdl" FILES ${LOVE_SRC_MODULE_WINDOW_SDL})
 
+set(LOVE_SRC_MODULE_MOD
+	src/modules/mod/Mod.h
+	src/modules/mod/Mod.cpp
+	src/modules/mod/wrap_Mod.h
+	src/modules/mod/wrap_Mod.cpp
+)
+
 ###################################
 # Third-party libraries
 ###################################
@@ -1743,6 +1750,7 @@ set(LOVE_LIB_SRC
 	${LOVE_SRC_MODULE_TOUCH}
 	${LOVE_SRC_MODULE_VIDEO}
 	${LOVE_SRC_MODULE_WINDOW}
+	${LOVE_SRC_MODULE_MOD}
 )
 
 include_directories(
