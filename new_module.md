@@ -7,7 +7,7 @@ let alone c++, so I am using this document to detail my findings regarding how t
 
 1. [Instructions](#instructions)
 2. [Next Steps](#next-steps)
-3. [Notes and References](#notes-and-references) 
+3. [References](#notes-and-references) 
 
 ## Instructions
 
@@ -300,19 +300,30 @@ depending on their file structure and if they use 3rd party libraries.
 I will give examples of libraries which have interesting structures,
 and you can refer to them if the structure applies to your module:
 
-- love.data: A "flat" module with no subdirectories and uses no 3rd party libraries.
-    - File structure:
-```
-src/modules/data
-|   DataModule.h
-|   DataModule.cpp
-|   (other files): more module features
-|   wrap_DataModule.h
-|   wrap_DataModule.cpp
-```
+- love.data: A "flat" module designed for only one implementation. Uses various libraries, but does not wrap them.
 
+- love.audio: A module which has multiple implementations and uses an external library.
+  There are two implementations: one uses openal, a library defined outside this codebase. 
+  The other is a "null" implementation which does not actually play any audio.
+  Because of this, the main module files are partially abstract.
 
-## Notes and References
+- love.physics: A module which has the capability of multiple implementations, but only has one.
+  It depends on a modified version of box2d stored within this repository. I will call this an
+  "internal" library, because it is in this repository.
+
+More succinctly, here are some specific modules which showcase various structures.
+Abstract means there *can* be more than one implementation.
+Internal libraries means the library code is in this repository (for example, box2d).
+External libraries means the library must be referenced from elsewhere (for example, SDL).
+
+|   Module   | Abstract | Internal Libraries | External Libraries |
+|------------|----------|--------------------|--------------------|
+|data        |no        |yes                 |yes                 |
+|event       |yes       |no                  |yes                 |
+|filesystem  |yes       |yes                 |yes                 |
+|timer       |no        |no                  |yes                 |
+
+## References
 
 ### [Adding a new module to Love, help!](https://love2d.org/forums/viewtopic.php?t=83369)
 
