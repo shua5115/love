@@ -239,6 +239,20 @@ extern "C"
    I don't know how they work, and you're making this version of love expressely because you need
    this custom module, so I don't think making the module optional is too important currently.
 
+Next, add the module to the `static const luaL_Reg modules[]` array:
+
+```c++
+static const luaL_Reg modules[] = {
+#if defined(LOVE_ENABLE_AUDIO)
+	{ "love.audio", luaopen_love_audio },
+#endif
+// ...etc.
+    { "love.mod", luaopen_love_mod },
+    
+    {0, 0}
+}
+```
+
    Now, we can access the new module by calling `require("love.mod")` in lua,
    which will load it into the global love table, but this is not done automatically.
 
