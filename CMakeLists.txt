@@ -176,7 +176,7 @@ if(MEGA)
 		# MEGA_LUA51 is a CMake target, so includes are handled
 		# automatically.
 	endif()
-else()
+else() # not MEGA
 	if(MSVC)
 		message(FATAL_ERROR "
 It is currently only possible to build with megasource on Windows.
@@ -193,9 +193,12 @@ Please see https://github.com/love2d/megasource
 	find_package(Vorbis REQUIRED)
 	find_package(ZLIB REQUIRED)
 	find_package(Ogg REQUIRED)
+	find_package(assimp REQUIRED)
 
 	# required for enet
 	add_definitions(-D HAS_SOCKLEN_T)
+
+	# message(STATUS "ASSIMP_INCLUDE_DIR=${ASSIMP_INCLUDE_DIRS}")
 
 	set(LOVE_INCLUDE_DIRS
 		${SDL2_INCLUDE_DIR}
@@ -206,6 +209,7 @@ Please see https://github.com/love2d/megasource
 		${MODPLUG_INCLUDE_DIR}
 		${OGG_INCLUDE_DIR}
 		${THEORA_INCLUDE_DIR}
+		${ASSIMP_INCLUDE_DIRS}
 	)
 
 	set(LOVE_LINK_LIBRARIES
@@ -220,7 +224,9 @@ Please see https://github.com/love2d/megasource
 		${LOVE_LUA_LIBRARY}
 		${OGG_LIBRARY}
 		${ZLIB_LIBRARY}
+		${ASSIMP_LIBRARIES}
 	)
+	# message(STATUS "ASSIMP_INCLUDE_DIR=${ASSIMP_INCLUDE_DIR}")
 
 	if(LOVE_MPG123)
 		find_package(MPG123 REQUIRED)
@@ -1122,6 +1128,13 @@ set(LOVE_SRC_MODULE_MOD
 	src/modules/mod/wrap_Mod.cpp
 )
 
+set(LOVE_SRC_MODULE_ASSIMP
+	src/modules/assimp/Assimp.h
+	src/modules/assimp/Assimp.cpp
+	src/modules/assimp/wrap_Assimp.h
+	src/modules/assimp/wrap_Assimp.cpp
+)
+
 ###################################
 # Third-party libraries
 ###################################
@@ -1751,6 +1764,7 @@ set(LOVE_LIB_SRC
 	${LOVE_SRC_MODULE_VIDEO}
 	${LOVE_SRC_MODULE_WINDOW}
 	${LOVE_SRC_MODULE_MOD}
+	${LOVE_SRC_MODULE_ASSIMP}
 )
 
 include_directories(

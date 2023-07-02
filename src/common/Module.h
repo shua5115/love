@@ -58,6 +58,7 @@ public:
 		M_VIDEO,
 		M_WINDOW,
 		M_MOD,
+		M_ASSIMP,
 		M_MAX_ENUM
 	};
 

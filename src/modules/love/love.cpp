@@ -168,8 +168,9 @@ extern "C"
 	extern int luaopen_love_arg(lua_State*);
 	extern int luaopen_love_callbacks(lua_State*);
 	extern int luaopen_love_boot(lua_State*);
-	
+	// added modules
 	extern int luaopen_love_mod(lua_State*);
+	extern int luaopen_love_assimp(lua_State*);
 }
 
 static const luaL_Reg modules[] = {
@@ -237,6 +238,7 @@ static const luaL_Reg modules[] = {
 	{ "love.boot", luaopen_love_boot },
 
 	{ "love.mod", luaopen_love_mod },
+	{ "love.assimp", luaopen_love_assimp},
 
 	{ 0, 0 }
 };
