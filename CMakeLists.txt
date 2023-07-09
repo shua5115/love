@@ -1129,8 +1129,8 @@ set(LOVE_SRC_MODULE_MOD
 )
 
 set(LOVE_SRC_MODULE_ASSIMP
-	src/modules/assimp/Assimp.h
-	src/modules/assimp/Assimp.cpp
+	src/modules/assimp/AssimpModule.h
+	src/modules/assimp/AssimpModule.cpp
 	src/modules/assimp/wrap_Assimp.h
 	src/modules/assimp/wrap_Assimp.cpp
 )

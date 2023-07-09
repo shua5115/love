@@ -339,6 +339,12 @@ External libraries means the library must be referenced from elsewhere (for exam
 
 ## References
 
+### [Extending Love2d](https://rlewicki.tech/posts/extending-love2d/)
+
+Found this after writing most of the step-by-step guide. Weird how all my search terms didn't make this show up top,
+because it's exactly what I was looking for. Regardless, it matches what I have here pretty closely,
+and shows you how to compile.
+
 ### [Adding a new module to Love, help!](https://love2d.org/forums/viewtopic.php?t=83369)
 
 Things to do when adding a new module:

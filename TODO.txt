@@ -1,0 +1,11 @@
+Tasks to do
+- Assimp
+    - Finish conversion functions
+    - File importing function
+- Math library
+    - Vectors (not a custom type, just a metatable and a bunch of metamethods)
+    - Quaternions, same deal as vectors
+    - 3D transforms which use vectors and quaternions to store transformations
+    - Modify transform class to have 3D transformations
+- Imgui
+    - Leave this for later...
