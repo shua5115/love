@@ -7,6 +7,7 @@
 #include "common/runtime.h"
 #include "common/Module.h"
 #include "modules/filesystem/File.h"
+#include "modules/graphics/Graphics.h"
 #include "common/Data.h"
 // ASSIMP
 #include <assimp/scene.h>
@@ -32,7 +33,7 @@ public:
     // Define the name for this module
     const char *getName() const override { return "love.assimp"; }
 
-	virtual void foo() const;
+	// virtual void foo() const;
 
 	// Imports a file with assimp from memory.
 	// This bypasses the incompatability of the love filesystem with assimp's file reading capabilities.
@@ -59,6 +60,8 @@ public:
 	int convert(lua_State *L, const aiTexture *texture);
 
 	int convert(lua_State *L, const aiAnimation *anim);
+
+	int convert(lua_State *L, const aiAnimBehaviour behavior);
 
 	int convert(lua_State *L, const aiNodeAnim *anim);
 
@@ -100,6 +103,15 @@ public:
 
 	// Leaves a table of length 3 on the stack
 	int convert(lua_State *L, const aiColor3D *col3);
+
+	const std::vector<love::graphics::Mesh::AttribFormat> mesh_format = {
+        {"VertexPosition", love::graphics::vertex::DATA_FLOAT, 3},
+        {"VertexTexCoord", love::graphics::vertex::DATA_FLOAT, 2},
+        {"VertexNormal", love::graphics::vertex::DATA_FLOAT, 3},
+        {"VertexTangent", love::graphics::vertex::DATA_FLOAT, 3},
+        {"VertexBitangent", love::graphics::vertex::DATA_FLOAT, 3},
+        {"VertexColor", love::graphics::vertex::DATA_UNORM8, 4},
+    };
 
 	const std::unordered_map<std::string, unsigned int> post_process_strings = {
 		{"calc_tangent_space", aiProcess_CalcTangentSpace},

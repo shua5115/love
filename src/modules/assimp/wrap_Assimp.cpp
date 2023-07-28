@@ -14,12 +14,12 @@ using namespace filesystem;
 
 #define instance() (Module::getInstance<AssimpModule>(Module::M_ASSIMP))
 
-int w_foo(lua_State *L)
-{
-    AssimpModule* mod = instance();
-    mod->foo();
-    return 0;
-}
+// int w_foo(lua_State *L)
+// {
+//     AssimpModule* mod = instance();
+//     mod->foo();
+//     return 0;
+// }
 
 int w_version(lua_State *L)
 {
@@ -102,7 +102,7 @@ int w_import(lua_State *L)
 	}
 	// At this point there exists a Data object at stack index -1
 
-	unsigned int opt_post_process = 0;
+	unsigned int opt_post_process = aiProcess_Triangulate; // Always triangulate meshes for simplicity
 	if (lua_istable(L, 2)) {
 		// get options by iterating through every item in the list
 		int i = 1;
@@ -159,7 +159,7 @@ int w_import(lua_State *L)
 static const luaL_Reg functions[] =
 {
 	{"getVersion", w_version},
-	{"foo", w_foo},
+	// {"foo", w_foo},
 	{"import", w_import},
 	{"getPostProcessOptions", w_postprocess_options},
 

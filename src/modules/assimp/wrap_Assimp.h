@@ -11,7 +11,7 @@ namespace love_assimp
 {
 
 // Wrapped module function
-int w_foo(lua_State *L);
+// int w_foo(lua_State *L);
 
 int w_import(lua_State *L);
 

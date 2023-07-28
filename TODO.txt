@@ -1,11 +1,13 @@
 Tasks to do
 - Assimp
-    - Finish conversion functions
-    - File importing function
+    - (done) Finish conversion functions
+        - (done) For every love Object allocation, be sure to reduce the reference count by 1 after pushing onto the stack.
+    - (done) File importing function
+    - Test with other files assimp can load, since testing on one file is not enough
 - Math library
     - Vectors (not a custom type, just a metatable and a bunch of metamethods)
     - Quaternions, same deal as vectors
     - 3D transforms which use vectors and quaternions to store transformations
-    - Modify transform class to have 3D transformations
+    - Modify existing transform class to have 3D transformations
 - Imgui
     - Leave this for later...
