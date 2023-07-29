@@ -1,5 +1,5 @@
-#ifndef LOVE_MOD_H
-#define LOVE_MOD_H
+#ifndef LOVE_ASSIMP_H
+#define LOVE_ASSIMP_H
 
 #include <unordered_map>
 #include <string>
@@ -32,15 +32,6 @@ public:
 
     // Define the name for this module
     const char *getName() const override { return "love.assimp"; }
-
-	// virtual void foo() const;
-
-	// Imports a file with assimp from memory.
-	// This bypasses the incompatability of the love filesystem with assimp's file reading capabilities.
-	// Be sure to call aiReleaseImport() on the result of this function once you are done with the data.
-	// Will return a nullptr if the import fails. 
-	// const aiScene * import(lua_State *L, const love::Data &filedata, unsigned int pFlags = 0, const char *extension_hint = nullptr);
-	// Not using this because it is safer to do this manually with an Assimp::Importer, which will automatically free memory once out of scope.
 
 	// Stores an aiScene in a lua table structure
 	int convert(lua_State *L, const aiScene *scene);

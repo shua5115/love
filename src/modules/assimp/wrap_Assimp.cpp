@@ -1,7 +1,6 @@
 #include "wrap_Assimp.h"
-// #include "modules/filesystem/FileData.h"
 #include "modules/filesystem/Filesystem.h"
-#include "filesystem/wrap_Filesystem.h"
+#include "modules/filesystem/wrap_Filesystem.h"
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
 
@@ -13,13 +12,6 @@ namespace love_assimp
 using namespace filesystem;
 
 #define instance() (Module::getInstance<AssimpModule>(Module::M_ASSIMP))
-
-// int w_foo(lua_State *L)
-// {
-//     AssimpModule* mod = instance();
-//     mod->foo();
-//     return 0;
-// }
 
 int w_version(lua_State *L)
 {

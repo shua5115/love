@@ -14,14 +14,6 @@ namespace love
 namespace love_assimp
 {
 
-// void AssimpModule::foo() const
-// {
-//     aiScene scene;
-//     scene.mName = aiString("Hello, assimp");
-//     std::cout << scene.mName.C_Str() << std::endl;
-//     printf("Assimp version: %d.%d.%d\n", aiGetVersionMajor(), aiGetVersionMinor(), aiGetVersionPatch());
-// }
-
 int AssimpModule::convert(lua_State *L, const aiScene *scene)
 {
     // make a table to temporarily store the node structure
